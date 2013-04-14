@@ -1,6 +1,6 @@
 class nfs::client::debian inherits nfs::base {
 
-  package { ["nfs-common", "portmap"]:
+  package { ["nfs-common", "rpcbind"]:
     ensure => present,
   }
  
@@ -11,11 +11,11 @@ class nfs::client::debian inherits nfs::base {
     require   => Package["nfs-common"],
   }
  
-  service { "portmap":
+  service { "rpcbind":
     ensure    => running,
     enable    => true,
     hasstatus => false,
-    require   => Package["portmap"],
+    require   => Package["rpcbind"],
   }
 
 }
